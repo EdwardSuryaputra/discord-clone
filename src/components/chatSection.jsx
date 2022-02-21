@@ -42,7 +42,7 @@ const ChatSection = ({auth, firestore}) => {
   
       <form onSubmit={sendMessage} className="form-message">
   
-        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type something" className="input-form"/>
+        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Enter message..." className="input-form"/>
     
       </form>
     </>)

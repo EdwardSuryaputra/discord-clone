@@ -14,12 +14,48 @@
     border border-gray-200 dark:border-gray-800 rounded-full
     mx-2;
   }
-  .button-channel {
-    @apply ml-5 mt-6 text-lg text-gray-500 flex flex-row hover:text-blue-600 transition-all duration-300;
+
+  .channel-container {
+    @apply mt-6 text-lg text-gray-500 flex flex-row;
   }
 
   .channel-arrow-logo {
     @apply pt-1.5 text-gray-500 transition-all duration-300;
+  }
+
+  .dropdown {
+    @apply m-0 w-full px-2 pb-2
+    transition duration-300 ease-in-out;
+  }
+
+  .dropdown-header {
+    @apply flex flex-row text-gray-500
+    cursor-pointer;
+  }
+
+  .dropdown-header-text {
+    @apply text-gray-500  text-opacity-90 
+    text-lg font-semibold
+    cursor-default;
+  }
+
+  .dropdown-header-text-selected {
+    @apply text-blue-500 text-opacity-90 text-lg font-bold;
+  }
+
+  .dropdown-selection {
+    @apply flex flex-row items-center justify-evenly
+    mt-1 mr-auto ml-2
+    transition duration-300 ease-in-out
+    cursor-pointer;
+  }
+
+  .dropdown-selection-text {
+    @apply text-gray-500 font-semibold tracking-wide
+    mr-auto 
+    transition duration-300 ease-in-out 
+ hover:text-gray-400
+    cursor-pointer;
   }
 
   .top-navigation {
