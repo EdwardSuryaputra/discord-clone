@@ -3,10 +3,9 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '@firebase/app-compat';
 import 'firebase/compat/firestore';
 
-const ChatSection = ({auth, firestore}) => {
+const ChatSection = ({auth, firestore, topic}) => {
     const dummy = useRef();
-    console.log({firestore});
-    const messagesRef = firestore.collection('gaming-room');
+    const messagesRef = firestore.collection(topic);
     const query = messagesRef.orderBy('createdAt');
   
     const [messages] = useCollectionData(query, { idField: 'id' });
@@ -43,7 +42,7 @@ const ChatSection = ({auth, firestore}) => {
       <form onSubmit={sendMessage} className="form-message">
   
         <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Enter message..." className="input-form"/>
-    
+        
       </form>
     </>)
 

@@ -1,11 +1,11 @@
 import ChatSection from "./chatSection";
 import TopNavigation from "./topNavigation";
 
-const ChatPage = ({auth, firestore}) => {
+const ChatPage = ({auth, firestore, topic}) => {
     return auth.currentUser && (
       <div className="chat-page">
         <TopNavigation auth={auth}/>
-        <ChatSection auth={auth} firestore={firestore}/>
+        <ChatSection auth={auth} firestore={firestore} topic={topic}/>
       </div>
     )
   }

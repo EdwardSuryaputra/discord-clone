@@ -1,25 +1,30 @@
 import { useState } from 'react';
 import { BsHash } from 'react-icons/bs';
-import { FaChevronDown, FaChevronRight, FaPlus } from 'react-icons/fa';
+import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import ChatPage from './chatPage';
 
 
-const topics = ['tailwind-css', 'react'];
+const topics = ['chill-room', 'gaming-room', 'studying-room'];
 
-const ChannelBar = () => {
+const ChannelBar = ({auth, firestore}) => {
+    const [topic, setTopic] = useState("chill-room");
+
     return(
-        <div className="fixed top-0 left-16 h-screen m-0 flex flex-col bg-gray-800 text-white shadow-2xl w-56">
-            <h1 className="ml-5 mt-4 text-lg text-gray-300"><b>Channels</b></h1>
-                {/* <button className="button-channel group"><ChannelArrowLogo icon={<MdArrowForwardIos size="15"/>}/>
-                <b className="pl-2">Topics</b></button> */}
-            <div className='channel-container'>
-                <Dropdown header='Topics' selections={topics} />
-            </div>
+        <div>
+            <div className="fixed top-0 left-16 h-screen m-0 flex flex-col bg-gray-800 text-white shadow-2xl w-56">
+                <h1 className="ml-5 mt-4 text-lg text-gray-300"><b>Channels</b></h1>
+                <div className='channel-container'>
+                    <Dropdown header='Topics' selections={topics} topic={topic} setTopic={setTopic}/>
+                </div>
 
+            </div>
+            <ChatPage auth={auth} firestore={firestore} topic={topic}/>
         </div>
+        
     );
 };
 
-const Dropdown = ({ header, selections }) => {
+const Dropdown = ({ header, selections, topic, setTopic }) => {
     const [expanded, setExpanded] = useState(true);
   
     return (
@@ -34,7 +39,7 @@ const Dropdown = ({ header, selections }) => {
         </div>
         {expanded &&
           selections &&
-          selections.map((selection) => <TopicSelection selection={selection} />)}
+          selections.map((selection) => <TopicSelection selection={selection} topic={topic} setTopic={setTopic}/>)}
       </div>
     );
   };
@@ -48,10 +53,13 @@ const Dropdown = ({ header, selections }) => {
     );
   };
   
-  const TopicSelection = ({ selection }) => (
-    <div className='dropdown-selection'>
-      <BsHash size='24' className='text-gray-400' />
-      <h5 className='dropdown-selection-text'>{selection}</h5>
-    </div>
-  );
+const TopicSelection = ({ selection, topic, setTopic }) => {
+
+    return (
+        <div className='dropdown-selection'>
+        <BsHash size='24' className='text-gray-400' />
+        <button className='dropdown-selection-text' onClick={() => setTopic(topic = selection)}>{selection}</button>
+      </div>
+    );
+};
 export default ChannelBar;
